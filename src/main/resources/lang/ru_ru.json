@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "Недостаточно прав",
+  "command.missing_parameters": "Недостаточно параметров",
+  "command.reread_configuration_successfully": "Конфигурация плагина успешно перезагружена",
+  "command.reread_configuration_error": "Произошла ошибка при перезагрузке конфигурации плагина",
+  "command.unknown_parameter_type": "Неизвестный тип параметра",
+  "command.report.source": "ИСТОЧНИК",
+  "command.report.fast": "БЫСТРО",
+  "command.report.slow": "МЕДЛЕННО",
+  "command.report.flow": "ПОТОК",
+  "command.report.5s": "5с",
+  "command.report.1m": "1м",
+  "command.report.5m": "5м",
+  "command.continue_execution": "Ошибка продолжения",
+  "command.suspension_execution": "Ошибка приостановки",
+  "command.players_do_not_exist": "Players do not exist",
+  "command.rechecked_player_permissions": "Rechecked player permissions"
+}

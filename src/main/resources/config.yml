@@ -1,0 +1,231 @@
+# 視野距離模式
+#   越大的視野距離需要更多的計算
+#   可用選項:
+#     (參數)  = `max-view-distance` 最大有效為 | 每位玩家需要多少的 RAM 來計算視圖
+#      "X15"  =  15 |  int[  31] = byte[  124] 最快
+#      "X31"  =  31 | long[  63] = byte[  504] 推薦
+#      "X63"  =  63 | long[ 254] = byte[ 2032]
+#     "X127"  = 127 | long[1020] = byte[ 8160]
+#     "X383"  = 383 | long[3064] = byte[24512]
+# View distance mode
+#   The larger the field of view distance requires more calculations
+#   Options:
+#     (VALUE) = The `max-view-distance` maximum effective is | How much RAM does each player need to calculate the view
+#      "X15"  =  15 |  int[  31] = byte[  124] Fastest
+#      "X31"  =  31 | long[  63] = byte[  504] Recommend
+#      "X63"  =  63 | long[ 254] = byte[ 2032]
+#     "X127"  = 127 | long[1020] = byte[ 8160]
+#     "X383"  = 383 | long[3064] = byte[24512]
+view-distance-mode: "X31"
+
+# 伺服器本身的視野距離
+#   只是為了防止錯誤 (某些最佳化核心)
+#   設置為 -1 則使用伺服器本身 view-distance 的數值
+# The field of view of the server itself
+#   Just to prevent errors (some optimization cores)
+#   Set to -1 uses the value of view-distance of the server itself
+server-view-distance: -1
+
+# 自動適應玩家網路速度
+#   採用特殊的方式計算玩家網路速度
+#   盡可能不發送高於玩家網速的區塊
+# Automatically adapt to the player internet speed
+#   Use a special method to calculate the player network speed
+#   Try not to send chunk higher than the player network speed
+auto-adapt-player-network-speed: true
+# 能使用多少玩家的網路速度 (百分比)
+#   如果檢測出網速為 2 MB/s, 0.6 = 60%, 只允許發送 1.2 MB/s
+# How many player internet speed can be used (percentage)
+#   If the detected network speed is 2 MB/s, 0.6 = 60%, only 1.2 MB/s is allowed to be sent
+player-network-speed-use-degree: 0.6
+
+# 異步執行緒數量
+#   建議值 1~10 (也可以更高)
+# Number of asynchronous threads
+#   Recommended value 1~10 (can also be higher)
+async-thread-amount: 2
+
+# 伺服器每秒能傳輸多少數據 (單位 bytes)
+#   預設值 20971520 bytes = 20 MB
+# How much data can the server transmit per second (Unit bytes)
+#   Default value 20971520 bytes = 20 MB
+server-send-second-max-bytes: 20971520
+
+# 伺服器每個遊戲刻度能生成多少個區塊
+#   產生地形時, CPU負擔會很大
+#   設置為 0 不生成
+# How many chunk can the server generate per game tick
+#   When generating terrain, the CPU workload is greater
+#   Set to 0 Does not generate
+server-tick-max-generate-amount: 2
+
+# 計算丟失的高度圖
+#   關閉可以減少每個區塊所需的計算量
+#   但可能會造成 雪 / 雨 穿透地底的錯誤
+# Calculate the missing height map
+#   Closing can reduce the amount of calculation required for each chunk
+#   But it may cause snow/rain to penetrate the ground by mistake
+calculate-missing-height-map: false
+
+# 不要快速處理區塊
+#   每次讀取都加載一次
+# Don't fast process chunk
+#   Load once for each sent
+disable-fast-process: false
+
+# 獨立的世界配置
+# Independent world configuration
+worlds:
+  # 全部世界的預設值
+  # default value for all worlds
+  default:
+    # 是否啟用擴展視野距離
+    # Whether to enable extended view distance
+    enable: true
+
+    # 最大視野距離
+    #   客戶端有效視野距離不會超過此值
+    #     客戶端 < 擴展極限 = 客戶端
+    #     客戶端 > 擴展極限 = 擴展極限
+    #     客戶端 < 伺服器   = 伺服器
+    # Max view distance
+    #   The effective view distance of the client will not exceed this value
+    #     Client < Extend = Client
+    #     Client > Extend = Extend
+    #     Client < Server = Server
+    max-view-distance: 31
+
+    # 世界每個遊戲刻度能生成多少個區塊
+    #   產生地形時, CPU負擔會很大
+    #   設置為 0 不生成
+    # How many chunk can the world generate per game tick
+    #   When generating terrain, the CPU workload is greater
+    #   Set to 0 Does not generate
+    world-tick-max-generate-amount: 2
+
+    # 發送的區塊是否包含磚瓦實體資料
+    # 若不發送則玩家依然看的到那些方塊, 除非使用 `prevent-xray`
+    #   例如 箱子 / 告示牌 / 床
+    # Whether the sent chunk contains tile entity data
+    # If you don’t send it, the player will still see those blocks, unless you use `prevent-xray`
+    #   E.g. chest / sign / bed
+    send-title-data: true
+
+    # 世界每秒能傳輸多少數據 (單位 bytes)
+    #   預設值 10485760 bytes = 10 MB
+    # How much data can the world transmit per second (Unit bytes)
+    #   Default value 10485760 bytes = 10 MB
+    world-send-second-max-bytes: 10485760
+
+    # 玩家每秒能傳輸多少數據 (單位 bytes)
+    #   預設值 2097152 bytes = 2 MB
+    # How much data can the world transmit per second (Unit bytes)
+    #   Default value 2097152 bytes = 2 MB
+    player-send-second-max-bytes: 2097152
+
+    # 可以讀取伺服器已加載的區塊
+    #   如果關閉, 一律讀取最後保存的狀態
+    # Can read the chunk loaded by the server
+    #   If closed, always read the last saved state
+    read-server-loaded-chunk: true
+
+    # 發送前的延遲
+    #   每次切換世界 / 長距離傳送 / 死亡重生, 都要等待多少毫秒才傳輸區塊
+    #   建議數值 2000 ~ 20000 (2 ~ 20秒)
+    # Delay before send
+    #   Every time you switch the world / long distance transmission / death rebirth, how many milliseconds do you have to wait before sending the chunk
+    #   Recommended value 2000~20000 (2~20 seconds)
+    delay-before-send: 5000
+
+    # 預防方塊透視外掛
+    #   暴力替換, 不使用任何計算
+    #   此配置轉換的方塊僅此插件發送的區塊! 非此插件發送與伺服器本身發送的互不干涉!
+    #   如果伺服器需要一樣的功能, 使用 paper 核心並啟用 'paper.yml'->'anti-xray'
+    # Prevent chunk perspective plugin
+    #   Brute force replacement without any calculation
+    #   The block converted by this configuration is only the chunk sent by this plugin! plugin send and server send itself does not interfere with each other!
+    #   Server needs the same function, use the paper core and enable 'paper.yml'->'anti-xray'
+    #
+    # * https://paper.readthedocs.io/en/latest/server/configuration.html#anti-xray
+    prevent-xray:
+      # 是否啟用預防方塊透視外掛
+      # Whether to enable the prevent xray
+      enable: true
+
+      # 轉換清單
+      #   格式
+      #     轉換成方塊:
+      #     - 被轉換的方塊A
+      #     - 被轉換的方塊B
+      #     - 被轉換的方塊C
+      # Conversion list
+      #   format
+      #     Convert to block:
+      #     - Target block A
+      #     - Target block B
+      #     - Target block C
+      conversion-list:
+        STONE:
+          - COAL_ORE
+          - IRON_ORE
+          - COPPER_ORE
+          - GOLD_ORE
+          - REDSTONE_ORE
+          - EMERALD_ORE
+          - LAPIS_ORE
+          - DIAMOND_ORE
+        DEEPSLATE:
+          - DEEPSLATE_COAL_ORE
+          - DEEPSLATE_IRON_ORE
+          - DEEPSLATE_COPPER_ORE
+          - DEEPSLATE_GOLD_ORE
+          - DEEPSLATE_REDSTONE_ORE
+          - DEEPSLATE_EMERALD_ORE
+          - DEEPSLATE_LAPIS_ORE
+          - DEEPSLATE_DIAMOND_ORE
+        NETHERRACK:
+          - NETHER_GOLD_ORE
+          - NETHER_QUARTZ_ORE
+          - ANCIENT_DEBRIS
+        BLACKSTONE:
+          - GILDED_BLACKSTONE
+
+    # 超速則不提供擴展視野距離
+    #   水平方向的移動速度高於此值則暫時停止提供擴展視野距離
+    #   內部計算公式為 `sqrt(square(lastX - moveX) + square(lastZ - moveZ)) > speeding-not-send`
+    #   設置為 -1 則忽略
+    #   如果有啟用 prevent-xray
+    #     非常不推薦設置高於 1.2 或 關閉
+    #     高速移動會造成區塊覆蓋引起礦物消失
+    # Speeding does not provide extend view distance
+    #   If the moving speed in the horizontal direction is higher than this value, it will temporarily stop provide extend view distance
+    #   The internal calculation formula is `sqrt(square(lastX - moveX) + square(lastZ - moveZ)) > speeding-not-send`
+    #   Set to -1 to ignore
+    #   If have prevent-xray enabled
+    #     Setting higher than 1.2 or off is highly discouraged
+    #     High-speed movement can cause chunk overlays that cause minerals to disappear
+    speeding-not-send: 1.2
+
+  # 地獄由於遊戲機制無法看太遠
+  # Hell cannot be seen too far due to game mechanics
+  world_nether:
+    # 是否啟用擴展視野距離
+    # Whether to enable extended field of view distance
+    enable: false
+
+# 權限相關
+# Permission related
+permissions:
+  # <視圖距離>;<權限名稱>
+  # <view distance>;<permission name>
+  node-list:
+    - "8;max_view_distance.8"
+    - "16;max_view_distance.16"
+    - "24;max_view_distance.24"
+    - "32;max_view_distance.32"
+
+  # 多少毫秒檢查一次玩家的權限
+  #   設置為 -1 禁用
+  # How many millisecond to check player permissions
+  #   Set to -1 Disable
+  periodic-millisecond-check: 60000

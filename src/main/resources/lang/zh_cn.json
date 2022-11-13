@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "无此权限",
+  "command.missing_parameters": "缺少参数",
+  "command.reread_configuration_successfully": "已重新读取设定",
+  "command.reread_configuration_error": "重新读取设定时发生错误",
+  "command.unknown_parameter_type": "未知的参数类型",
+  "command.report.source": "来源",
+  "command.report.fast": "快速",
+  "command.report.slow": "慢速",
+  "command.report.flow": "流量",
+  "command.report.5s": "5S",
+  "command.report.1m": "1M",
+  "command.report.5m": "5M",
+  "command.continue_execution": "继续运行",
+  "command.suspension_execution": "暂停运行",
+  "command.players_do_not_exist": "玩家不存在",
+  "command.rechecked_player_permissions": "已重新检查玩家权限"
+}

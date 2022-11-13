@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "無此權限",
+  "command.missing_parameters": "缺少參數",
+  "command.reread_configuration_successfully": "已重新讀取設定",
+  "command.reread_configuration_error": "重新讀取設定時發生錯誤",
+  "command.unknown_parameter_type": "未知的參數類型",
+  "command.report.source": "來源",
+  "command.report.fast": "快速",
+  "command.report.slow": "慢速",
+  "command.report.flow": "流量",
+  "command.report.5s": "5S",
+  "command.report.1m": "1M",
+  "command.report.5m": "5M",
+  "command.continue_execution": "繼續運行",
+  "command.suspension_execution": "暫停運行",
+  "command.players_do_not_exist": "玩家不存在",
+  "command.rechecked_player_permissions": "已重新檢查玩家權限"
+}

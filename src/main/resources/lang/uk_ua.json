@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "Недостатньо прав",
+  "command.missing_parameters": "Недостатньо параметрів",
+  "command.reread_configuration_successfully": "Конфігурація плагіна успішно перезавантажена",
+  "command.reread_configuration_error": "Сталася помилка під час перезавантаження конфігурації плагіна",
+  "command.unknown_parameter_type": "Невідомий тип параметра",
+  "command.report.source": "ДЖЕРЕЛО",
+  "command.report.fast": "ШВИДКО",
+  "command.report.slow": "ПОВІЛЬНО",
+  "command.report.flow": "ПОТІК",
+  "command.report.5s": "5с",
+  "command.report.1m": "1хв",
+  "command.report.5m": "5хв",
+  "command.continue_execution": "Помилка продовження",
+  "command.suspension_execution": "Помилка припинення",
+  "command.players_do_not_exist": "Players do not exist",
+  "command.rechecked_player_permissions": "Rechecked player permissions"
+}

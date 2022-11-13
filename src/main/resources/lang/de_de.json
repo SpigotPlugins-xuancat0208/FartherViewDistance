@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "Keine Erlaubnis",
+  "command.missing_parameters": "Fehlende Parameter",
+  "command.reread_configuration_successfully": "Konfiguration erfolgreich neu eingelesen",
+  "command.reread_configuration_error": "Fehler beim neu einlesen der Konfiguration",
+  "command.unknown_parameter_type": "Unbekannter Parametertyp",
+  "command.report.source": "QUELLE",
+  "command.report.fast": "SCHNELL",
+  "command.report.slow": "LANGSAM",
+  "command.report.flow": "FLIESSEN",
+  "command.report.5s": "5S",
+  "command.report.1m": "1M",
+  "command.report.5m": "5M",
+  "command.continue_execution": "Ausführung fortsetzen",
+  "command.suspension_execution": "Ausführung suspendieren",
+  "command.players_do_not_exist": "Players do not exist",
+  "command.rechecked_player_permissions": "Rechecked player permissions"
+}

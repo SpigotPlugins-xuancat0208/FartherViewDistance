@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="branch_1_19" />
+        <module name="branch_1_18" />
+        <module name="branch_1_17" />
+        <module name="branch_1_16" />
+        <module name="FartherViewDistance" />
+        <module name="branch_1_15" />
+        <module name="branch_1_14" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="branch_1_13" target="1.8" />
+      <module name="branch_1_14" target="1.8" />
+      <module name="branch_1_15" target="1.8" />
+      <module name="branch_1_16" target="1.8" />
+      <module name="branch_1_17" target="1.8" />
+      <module name="branch_1_18" target="9" />
+      <module name="branch_1_19" target="9" />
+      <module name="branch_1_19_b" target="9" />
+      <module name="FartherViewDistance" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

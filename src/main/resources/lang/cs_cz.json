@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "Nemáte dostatečná oprávnění",
+  "command.missing_parameters": "Chybí parametry",
+  "command.reread_configuration_successfully": "Konfigurace byla úspěšně znovu načtena",
+  "command.reread_configuration_error": "Konfigurace byla znovu načtena, ale došlo k chybě",
+  "command.unknown_parameter_type": "Neznámý typ parametru",
+  "command.report.source": "ZDROJ",
+  "command.report.fast": "RYCHLÝ",
+  "command.report.slow": "POMALÝ",
+  "command.report.flow": "TOK",
+  "command.report.5s": "5S",
+  "command.report.1m": "1M",
+  "command.report.5m": "5M",
+  "command.continue_execution": "Pokračovat ve vykonávání",
+  "command.suspension_execution": "Pozastavit provádění",
+  "command.players_do_not_exist": "Players do not exist",
+  "command.rechecked_player_permissions": "Rechecked player permissions"
+}

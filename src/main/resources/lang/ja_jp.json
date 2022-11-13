@@ -1,0 +1,18 @@
+{
+  "command.no_permission": "許可なし",
+  "command.missing_parameters": "欠落したパラメータ",
+  "command.reread_configuration_successfully": "構成の再読み込みに成功",
+  "command.reread_configuration_error": "構成の再読み込みに失敗",
+  "command.unknown_parameter_type": "不明なパラメータ種類",
+  "command.report.source": "出典",
+  "command.report.fast": "速い",
+  "command.report.slow": "遅い",
+  "command.report.flow": "流れ",
+  "command.report.5s": "5S",
+  "command.report.1m": "1M",
+  "command.report.5m": "5M",
+  "command.continue_execution": "実行を続ける",
+  "command.suspension_execution": "実行を中止",
+  "command.players_do_not_exist": "Players do not exist",
+  "command.rechecked_player_permissions": "Rechecked player permissions"
+}
