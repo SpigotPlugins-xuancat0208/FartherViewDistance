@@ -10,9 +10,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: other:PlaceholderAPI:2.11.0" level="project" />
-    <orderEntry type="library" name="Maven: paper:1.18:api:42" level="project" />
-    <orderEntry type="library" name="Maven: paper:1.18:mojangapi:42" level="project" />
+    <orderEntry type="library" name="Maven: other:PlaceholderAPI:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: paper:1.19.3:api:321" level="project" />
+    <orderEntry type="library" name="Maven: paper:1.19.3:mojangapi:321" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: md-5:bungeecord-chat:1.16-R0.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: mojang:datafixerupper:4.0.26" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: mojang:brigadier:1.0.18" level="project" />

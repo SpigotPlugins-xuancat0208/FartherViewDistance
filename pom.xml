@@ -6,7 +6,7 @@
 
     <groupId>FartherViewDistance</groupId>
     <artifactId>FartherViewDistance</artifactId>
-    <version>9.7.3</version>
+    <version>9.7.4</version>
     <packaging>jar</packaging>
 
     <name>FartherViewDistance</name>
@@ -55,20 +55,20 @@
         <dependency>
             <groupId>other</groupId>
             <artifactId>PlaceholderAPI</artifactId>
-            <version>2.11.0</version>
+            <version>2.11.2</version>
         </dependency>
 
-        <!-- 1.18 paper -->
+        <!-- 1.19.3 -->
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18</artifactId>
-            <version>42</version>
+            <artifactId>1.19.3</artifactId>
+            <version>321</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18</artifactId>
-            <version>42</version>
+            <artifactId>1.19.3</artifactId>
+            <version>321</version>
             <classifier>mojangapi</classifier>
         </dependency>
 

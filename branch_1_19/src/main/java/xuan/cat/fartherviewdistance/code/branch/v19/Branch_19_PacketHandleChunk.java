@@ -2,8 +2,8 @@ package xuan.cat.fartherviewdistance.code.branch.v19;
 
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.core.SectionPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.LongArrayTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_19_R1.CraftChunk;
+import org.bukkit.craftbukkit.v1_19_R2.CraftChunk;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,11 +52,11 @@ public final class Branch_19_PacketHandleChunk {
         Map<BlockPos, BlockEntity> blockEntityMap = !needTile ? new HashMap<>(0) : chunk.getBlockEntities();
         serializer.writeCollection(blockEntityMap.entrySet(), (buf, entry) -> {
             BlockEntity blockEntity = entry.getValue();
-            CompoundTag entityNBT = blockEntity.aa_();
+            CompoundTag entityNBT = blockEntity.getUpdateTag();
             BlockPos blockPos = blockEntity.getBlockPos();
             buf.writeByte(SectionPos.sectionRelative(blockPos.getX()) << 4 | SectionPos.sectionRelative(blockPos.getZ()));
             buf.writeShort(blockPos.getY());
-            buf.writeVarInt(Registry.BLOCK_ENTITY_TYPE.getId(blockEntity.getType()));
+            buf.writeVarInt(BuiltInRegistries.BLOCK_ENTITY_TYPE.getId(blockEntity.getType()));
             buf.writeNbt(entityNBT.isEmpty() ? null : entityNBT);
         });
     }

@@ -1,6 +1,6 @@
 package xuan.cat.fartherviewdistance.code.branch.v19;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -9,8 +9,8 @@ import net.minecraft.world.level.chunk.*;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FluidState;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_19_R1.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_19_R1.block.data.CraftBlockData;
+import org.bukkit.craftbukkit.v1_19_R2.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_19_R2.block.data.CraftBlockData;
 import org.bukkit.util.Vector;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunk;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunkLight;
@@ -73,7 +73,7 @@ public final class Branch_19_Chunk implements BranchChunk {
         if (indexY >= 0 && indexY < chunkSections.length) {
             LevelChunkSection chunkSection = chunkSections[indexY];
             if (chunkSection == null)
-                chunkSection = chunkSections[indexY] = new LevelChunkSection(indexY, worldServer.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY));
+                chunkSection = chunkSections[indexY] = new LevelChunkSection(indexY, worldServer.registryAccess().registryOrThrow(Registries.BIOME));
             chunkSection.setBlockState(x & 15, y & 15, z & 15, iBlockData, false);
         }
     }

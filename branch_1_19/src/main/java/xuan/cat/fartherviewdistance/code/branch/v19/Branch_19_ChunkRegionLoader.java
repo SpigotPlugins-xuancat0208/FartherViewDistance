@@ -8,6 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.SectionPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
@@ -101,7 +103,7 @@ public final class Branch_19_ChunkRegionLoader {
         LevelChunkSection[] sections = new LevelChunkSection[sectionsCount];
         ServerChunkCache chunkSource = world.getChunkSource();
         LevelLightEngine lightEngine = chunkSource.getLightEngine();
-        Registry<Biome> biomeRegistry = world.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+        Registry<Biome> biomeRegistry = world.registryAccess().registryOrThrow(Registries.BIOME);
         Codec<PalettedContainer<Holder<Biome>>> paletteCodec = makeBiomeCodecRW(biomeRegistry);
         for(int sectionIndex = 0; sectionIndex < sectionArrayNBT.size(); ++sectionIndex) {
             CompoundTag sectionNBT = sectionArrayNBT.getCompound(sectionIndex);
@@ -146,8 +148,8 @@ public final class Branch_19_ChunkRegionLoader {
 
         ChunkAccess chunk;
         if (chunkType == ChunkStatus.ChunkType.LEVELCHUNK) {
-            LevelChunkTicks<Block> ticksBlock = LevelChunkTicks.load(nbt.getList("block_ticks", 10), (sx) -> Registry.BLOCK.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
-            LevelChunkTicks<Fluid> ticksFluid = LevelChunkTicks.load(nbt.getList("fluid_ticks", 10), (sx) -> Registry.FLUID.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
+            LevelChunkTicks<Block> ticksBlock = LevelChunkTicks.load(nbt.getList("block_ticks", 10), (sx) -> BuiltInRegistries.BLOCK.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
+            LevelChunkTicks<Fluid> ticksFluid = LevelChunkTicks.load(nbt.getList("fluid_ticks", 10), (sx) -> BuiltInRegistries.FLUID.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
             LevelChunk levelChunk = new LevelChunk(world.getLevel(), chunkPos, upgradeData, ticksBlock, ticksFluid, inhabitedTime, sections, null, blendingData);
             chunk = levelChunk;
 
@@ -167,8 +169,8 @@ public final class Branch_19_ChunkRegionLoader {
                 }
             }
         } else {
-            ProtoChunkTicks<Block> ticksBlock = ProtoChunkTicks.load(nbt.getList("block_ticks", 10), (sx) -> Registry.BLOCK.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
-            ProtoChunkTicks<Fluid> ticksFluid = ProtoChunkTicks.load(nbt.getList("fluid_ticks", 10), (sx) -> Registry.FLUID.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
+            ProtoChunkTicks<Block> ticksBlock = ProtoChunkTicks.load(nbt.getList("block_ticks", 10), (sx) -> BuiltInRegistries.BLOCK.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
+            ProtoChunkTicks<Fluid> ticksFluid = ProtoChunkTicks.load(nbt.getList("fluid_ticks", 10), (sx) -> BuiltInRegistries.FLUID.getOptional(ResourceLocation.tryParse(sx)), chunkPos);
             ProtoChunk protochunk = new ProtoChunk(chunkPos, upgradeData, sections, ticksBlock, ticksFluid, world, biomeRegistry, blendingData);
             chunk = protochunk;
             protochunk.setInhabitedTime(inhabitedTime);
@@ -275,7 +277,7 @@ public final class Branch_19_ChunkRegionLoader {
         ThreadedLevelLightEngine lightEngine = world.getChunkSource().getLightEngine();
 
         // 生態解析器
-        Registry<Biome> biomeRegistry = world.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+        Registry<Biome> biomeRegistry = world.registryAccess().registryOrThrow(Registries.BIOME);
         Codec<PalettedContainerRO<Holder<Biome>>> paletteCodec = makeBiomeCodec(biomeRegistry);
         boolean lightCorrect = false;
 
@@ -356,8 +358,8 @@ public final class Branch_19_ChunkRegionLoader {
 
         ChunkAccess.TicksToSave tickSchedulers = chunk.getTicksForSerialization();
         long gameTime = world.getLevelData().getGameTime();
-        nbt.put("block_ticks", tickSchedulers.blocks().save(gameTime, (block) -> Registry.BLOCK.getKey(block).toString()));
-        nbt.put("fluid_ticks", tickSchedulers.fluids().save(gameTime, (fluid) -> Registry.FLUID.getKey(fluid).toString()));
+        nbt.put("block_ticks", tickSchedulers.blocks().save(gameTime, (block) -> BuiltInRegistries.BLOCK.getKey(block).toString()));
+        nbt.put("fluid_ticks", tickSchedulers.fluids().save(gameTime, (fluid) -> BuiltInRegistries.FLUID.getKey(fluid).toString()));
 
         ShortList[] packOffsetList = chunk.getPostProcessing();
         ListTag packOffsetsNBT = new ListTag();
