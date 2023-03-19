@@ -38,9 +38,9 @@
                         </goals>
                         <id>remap-obf</id>
                         <configuration>
-                            <srgIn>remapped:1.19.3:R0.1:txt:maps-mojang</srgIn>
+                            <srgIn>remapped:1.19.4:R0.1:txt:maps-mojang</srgIn>
                             <reverse>true</reverse>
-                            <remappedDependencies>remapped:1.19.3:R0.1:jar:remapped-mojang</remappedDependencies>
+                            <remappedDependencies>remapped:1.19.4:R0.1:jar:remapped-mojang</remappedDependencies>
                             <remappedArtifactAttached>true</remappedArtifactAttached>
                             <remappedClassifierName>remapped-obf</remappedClassifierName>
                         </configuration>
@@ -53,8 +53,8 @@
                         <id>remap-spigot</id>
                         <configuration>
                             <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar</inputFile>
-                            <srgIn>remapped:1.19.3:R0.1:csrg:maps-spigot</srgIn>
-                            <remappedDependencies>remapped:1.19.3:R0.1:jar:remapped-obf</remappedDependencies>
+                            <srgIn>remapped:1.19.4:R0.1:csrg:maps-spigot</srgIn>
+                            <remappedDependencies>remapped:1.19.4:R0.1:jar:remapped-obf</remappedDependencies>
                         </configuration>
                     </execution>
                 </executions>
@@ -148,23 +148,23 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 1.19.3 -->
+        <!-- 1.19.4 -->
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19.3</artifactId>
-            <version>321</version>
+            <artifactId>1.19.4</artifactId>
+            <version>451</version>
             <classifier>mapped</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19.3</artifactId>
-            <version>321</version>
+            <artifactId>1.19.4</artifactId>
+            <version>451</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19.3</artifactId>
-            <version>321</version>
+            <artifactId>1.19.4</artifactId>
+            <version>451</version>
             <classifier>mojangapi</classifier>
         </dependency>
         <!-- 1.19 spigot -->

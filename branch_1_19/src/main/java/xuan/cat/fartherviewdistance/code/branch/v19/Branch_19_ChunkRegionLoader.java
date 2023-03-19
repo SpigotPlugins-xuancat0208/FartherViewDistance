@@ -254,8 +254,7 @@ public final class Branch_19_ChunkRegionLoader {
     public static CompoundTag saveChunk(ServerLevel world, ChunkAccess chunk, Branch_19_ChunkLight light, List<Runnable> asyncRunnable) {
         int minSection = world.getMinSection() - 1;//WorldUtil.getMinLightSection();
         ChunkPos chunkPos = chunk.getPos();
-        CompoundTag nbt = new CompoundTag();
-        nbt.putInt("DataVersion", SharedConstants.getCurrentVersion().getWorldVersion());
+        CompoundTag nbt = NbtUtils.addCurrentDataVersion(new CompoundTag());
         nbt.putInt("xPos", chunkPos.x);
         nbt.putInt("yPos", chunk.getMinSection());
         nbt.putInt("zPos", chunkPos.z);

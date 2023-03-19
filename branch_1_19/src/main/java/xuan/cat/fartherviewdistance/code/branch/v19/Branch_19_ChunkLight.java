@@ -2,7 +2,7 @@ package xuan.cat.fartherviewdistance.code.branch.v19;
 
 import net.minecraft.server.level.ServerLevel;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunkLight;
 
 import java.util.Arrays;

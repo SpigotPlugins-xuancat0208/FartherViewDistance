@@ -12,7 +12,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_19_R2.CraftChunk;
+import org.bukkit.craftbukkit.v1_19_R3.CraftChunk;
 
 import java.util.HashMap;
 import java.util.Map;
