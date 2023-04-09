@@ -5,10 +5,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.*;
+import net.minecraft.world.level.chunk.ChunkStatus;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.chunk.PalettedContainer;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FluidState;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.craftbukkit.v1_19_R3.CraftChunk;
 import org.bukkit.craftbukkit.v1_19_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_19_R3.block.data.CraftBlockData;
 import org.bukkit.util.Vector;
@@ -24,32 +28,27 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class Branch_19_Chunk implements BranchChunk {
-    private final ChunkAccess chunkAccess;
+    private final LevelChunk levelChunk;
     private final ServerLevel worldServer;
 
 
-    public Branch_19_Chunk(ServerLevel worldServer, ChunkAccess chunkAccess) {
-        this.chunkAccess = chunkAccess;
+    public Branch_19_Chunk(ServerLevel worldServer, LevelChunk levelChunk) {
+        this.levelChunk = levelChunk;
         this.worldServer = worldServer;
     }
 
 
     public BranchNBT toNBT(BranchChunkLight light, List<Runnable> asyncRunnable) {
-        return new Branch_19_NBT(Branch_19_ChunkRegionLoader.saveChunk(worldServer, chunkAccess, (Branch_19_ChunkLight) light, asyncRunnable));
+        return new Branch_19_NBT(Branch_19_ChunkRegionLoader.saveChunk(worldServer, levelChunk, (Branch_19_ChunkLight) light, asyncRunnable));
     }
 
 
+    LevelChunk getLevelChunk() {
+        return levelChunk;
+    }
+
     public org.bukkit.Chunk getChunk() {
-        ChunkAccess chunk = chunkAccess;
-        if (chunk instanceof EmptyLevelChunk)
-            return ((LevelChunk) chunk).bukkitChunk;
-        else if (chunk instanceof LevelChunk)
-            return ((LevelChunk) chunk).bukkitChunk;
-        else if (chunk instanceof ProtoChunk)
-            return new LevelChunk(worldServer, ((ProtoChunk) chunk), v -> {
-            }).getBukkitChunk();
-        else
-            return null;
+        return new CraftChunk(levelChunk);
     }
 
     public org.bukkit.World getWorld() {
@@ -58,8 +57,8 @@ public final class Branch_19_Chunk implements BranchChunk {
 
 
     public BlockState getIBlockData(int x, int y, int z) {
-        int indexY = (y >> 4) - chunkAccess.getMinSection();
-        LevelChunkSection[] chunkSections = chunkAccess.getSections();
+        int indexY = (y >> 4) - levelChunk.getMinSection();
+        LevelChunkSection[] chunkSections = levelChunk.getSections();
         if (indexY >= 0 && indexY < chunkSections.length) {
             LevelChunkSection chunkSection = chunkSections[indexY];
             if (chunkSection != null && !chunkSection.hasOnlyAir())
@@ -68,8 +67,8 @@ public final class Branch_19_Chunk implements BranchChunk {
         return Blocks.AIR.defaultBlockState();
     }
     public void setIBlockData(int x, int y, int z, BlockState iBlockData) {
-        int indexY = (y >> 4) - chunkAccess.getMinSection();
-        LevelChunkSection[] chunkSections = chunkAccess.getSections();
+        int indexY = (y >> 4) - levelChunk.getMinSection();
+        LevelChunkSection[] chunkSections = levelChunk.getSections();
         if (indexY >= 0 && indexY < chunkSections.length) {
             LevelChunkSection chunkSection = chunkSections[indexY];
             if (chunkSection == null)
@@ -122,11 +121,11 @@ public final class Branch_19_Chunk implements BranchChunk {
 
 
     public int getX() {
-        return chunkAccess.getPos().x;
+        return levelChunk.getPos().x;
     }
 
     public int getZ() {
-        return chunkAccess.getPos().z;
+        return levelChunk.getPos().z;
     }
 
 
@@ -148,7 +147,7 @@ public final class Branch_19_Chunk implements BranchChunk {
             targetMap.put(targetState.getBlock(), targetState);
         }
         BlockState toI = ((CraftBlockData) to).getState();
-        for (LevelChunkSection section :chunkAccess.getSections()) {
+        for (LevelChunkSection section : levelChunk.getSections()) {
             if (section != null) {
                 AtomicInteger counts = new AtomicInteger();
                 PalettedContainer<BlockState> blocks = section.getStates();
@@ -203,7 +202,7 @@ public final class Branch_19_Chunk implements BranchChunk {
     }
 
     public org.bukkit.block.Biome getBiome(int x, int y, int z) {
-        return CraftBlock.biomeBaseToBiome(chunkAccess.biomeRegistry, chunkAccess.getNoiseBiome(x, y, z));
+        return CraftBlock.biomeBaseToBiome(levelChunk.biomeRegistry, levelChunk.getNoiseBiome(x, y, z));
     }
 
     @Deprecated
@@ -211,7 +210,7 @@ public final class Branch_19_Chunk implements BranchChunk {
         setBiome(x, 0, z, biome);
     }
     public void setBiome(int x, int y, int z, org.bukkit.block.Biome biome) {
-        chunkAccess.setBiome(x, y, z, CraftBlock.biomeToBiomeBase(chunkAccess.biomeRegistry, biome));
+        levelChunk.setBiome(x, y, z, CraftBlock.biomeToBiomeBase(levelChunk.biomeRegistry, biome));
     }
 
     public boolean hasFluid(int x, int y, int z) {
@@ -222,7 +221,7 @@ public final class Branch_19_Chunk implements BranchChunk {
     }
 
     public int getHighestY(int x, int z) {
-        return chunkAccess.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z);
+        return levelChunk.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z);
     }
 
 
@@ -257,6 +256,6 @@ public final class Branch_19_Chunk implements BranchChunk {
         return Status.EMPTY;
     }
     public Status getStatus() {
-        return ofStatus(chunkAccess.getStatus());
+        return ofStatus(levelChunk.getStatus());
     }
 }

@@ -4,6 +4,7 @@ import io.netty.channel.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ChunkHolder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.level.ChunkPos;
@@ -34,15 +35,15 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
     /**
      * 參考 XuanCatAPI.CodeExtendWorld
      */
-    public org.bukkit.Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
+    public BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
         try {
             // 適用於 paper
-            ChunkHolder playerChunk = ((CraftWorld) world).getHandle().getChunkSource().chunkMap.getVisibleChunkIfPresent((long) chunkZ << 32 | (long) chunkX & 4294967295L);
+            ServerLevel level = ((CraftWorld) world).getHandle();
+            ChunkHolder playerChunk = level.getChunkSource().chunkMap.getVisibleChunkIfPresent((long) chunkZ << 32 | (long) chunkX & 4294967295L);
             if (playerChunk != null) {
                 ChunkAccess chunk = playerChunk.getAvailableChunkNow();
                 if (chunk != null && !(chunk instanceof EmptyLevelChunk) && chunk instanceof LevelChunk) {
-                    LevelChunk levelChunk = (LevelChunk) chunk;
-                    return levelChunk.bukkitChunk;
+                    return new Branch_18_Chunk(level, chunk);
                 }
             }
             return null;

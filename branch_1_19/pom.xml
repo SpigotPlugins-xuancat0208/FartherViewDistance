@@ -123,7 +123,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.70.Final</version>
+            <version>4.1.86.Final</version>
             <scope>provided</scope>
         </dependency>
 
@@ -152,19 +152,19 @@
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.19.4</artifactId>
-            <version>451</version>
+            <version>501</version>
             <classifier>mapped</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.19.4</artifactId>
-            <version>451</version>
+            <version>501</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.19.4</artifactId>
-            <version>451</version>
+            <version>501</version>
             <classifier>mojangapi</classifier>
         </dependency>
         <!-- 1.19 spigot -->

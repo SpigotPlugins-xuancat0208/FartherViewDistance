@@ -31,7 +31,7 @@ public final class Branch_17_Minecraft implements BranchMinecraft {
         return nbtTagCompound != null ? new Branch_17_NBT(nbtTagCompound) : null;
     }
 
-    public org.bukkit.Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
+    public BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
         WorldServer         worldServer     = ((CraftWorld) world).getHandle();
         ChunkProviderServer providerServer  = worldServer.getChunkProvider();
         PlayerChunkMap      playerChunkMap  = providerServer.a;
@@ -39,7 +39,7 @@ public final class Branch_17_Minecraft implements BranchMinecraft {
         if (playerChunk != null) {
             IChunkAccess        chunk           = playerChunk.f();
             if (chunk != null && !(chunk instanceof ChunkEmpty) && chunk instanceof Chunk)
-                return ((Chunk) chunk).bukkitChunk;
+                return new Branch_17_Chunk(worldServer, chunk);
         }
         return null;
     }

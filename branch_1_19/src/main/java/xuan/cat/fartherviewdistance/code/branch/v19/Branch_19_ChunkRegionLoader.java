@@ -210,10 +210,11 @@ public final class Branch_19_ChunkRegionLoader {
         }
 
         if (chunkType == ChunkStatus.ChunkType.LEVELCHUNK) {
-            return new Branch_19_Chunk(world, chunk);
+            return new Branch_19_Chunk(world, (LevelChunk) chunk);
         } else {
             ProtoChunk protoChunk = (ProtoChunk) chunk;
-            return new Branch_19_Chunk(world, protoChunk);
+            return new Branch_19_Chunk(world, new LevelChunk(world, protoChunk, v -> {
+            }));
         }
     }
 

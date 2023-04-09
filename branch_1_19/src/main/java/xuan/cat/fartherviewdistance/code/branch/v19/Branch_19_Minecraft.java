@@ -4,10 +4,12 @@ import io.netty.channel.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ChunkHolder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkStatus;
 import net.minecraft.world.level.chunk.EmptyLevelChunk;
 import net.minecraft.world.level.chunk.LevelChunk;
 import org.bukkit.World;
@@ -43,15 +45,15 @@ public final class Branch_19_Minecraft implements BranchMinecraft {
     /**
      * 參考 XuanCatAPI.CodeExtendWorld
      */
-    public org.bukkit.Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
+    public BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
         try {
             // 適用於 paper
-            ChunkHolder playerChunk = ((CraftWorld) world).getHandle().getChunkSource().chunkMap.getVisibleChunkIfPresent((long) chunkZ << 32 | (long) chunkX & 4294967295L);
+            ServerLevel level = ((CraftWorld) world).getHandle();
+            ChunkHolder playerChunk = level.getChunkSource().chunkMap.getVisibleChunkIfPresent((long) chunkZ << 32 | (long) chunkX & 4294967295L);
             if (playerChunk != null) {
                 ChunkAccess chunk = playerChunk.getAvailableChunkNow();
                 if (chunk != null && !(chunk instanceof EmptyLevelChunk) && chunk instanceof LevelChunk) {
-                    LevelChunk levelChunk = (LevelChunk) chunk;
-                    return levelChunk.bukkitChunk;
+                    return new Branch_19_Chunk(level, (LevelChunk) chunk);
                 }
             }
             return null;
@@ -91,7 +93,7 @@ public final class Branch_19_Minecraft implements BranchMinecraft {
      * 參考 XuanCatAPI.CodeExtendWorld
      */
     public BranchChunk fromChunk(World world, org.bukkit.Chunk chunk) {
-        return new Branch_19_Chunk(((CraftChunk) chunk).getCraftWorld().getHandle(), ((CraftChunk) chunk).getHandle());
+        return new Branch_19_Chunk(((CraftChunk) chunk).getCraftWorld().getHandle(), (LevelChunk) ((CraftChunk) chunk).getHandle(ChunkStatus.FULL));
     }
 
     public void injectPlayer(Player player) {

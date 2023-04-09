@@ -27,7 +27,7 @@ public final class Branch_14_Minecraft implements BranchMinecraft {
      * @deprecated 由於 NMS 沒有實作異步, 所以不使用
      */
     @Deprecated
-    public org.bukkit.Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
+    public BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
         return null;
     }
 

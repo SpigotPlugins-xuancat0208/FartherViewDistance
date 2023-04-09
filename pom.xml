@@ -6,7 +6,7 @@
 
     <groupId>FartherViewDistance</groupId>
     <artifactId>FartherViewDistance</artifactId>
-    <version>9.7.5</version>
+    <version>9.7.6</version>
     <packaging>jar</packaging>
 
     <name>FartherViewDistance</name>
@@ -117,7 +117,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.70.Final</version>
+            <version>4.1.86.Final</version>
             <scope>provided</scope>
         </dependency>
 

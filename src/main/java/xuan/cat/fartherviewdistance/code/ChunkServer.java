@@ -349,7 +349,7 @@ public final class ChunkServer {
                                                 // 讀取最新
                                                 try {
                                                     if (configWorld.readServerLoadedChunk) {
-                                                        Chunk chunk = branchMinecraft.getChunkFromMemoryCache(world, chunkX, chunkZ);
+                                                        BranchChunk chunk = branchMinecraft.getChunkFromMemoryCache(world, chunkX, chunkZ);
                                                         if (chunk != null) {
                                                             // 讀取快取
                                                             serverCumulativeReport.increaseLoadFast();
@@ -358,7 +358,7 @@ public final class ChunkServer {
                                                             threadCumulativeReport.increaseLoadFast();
                                                             List<Runnable> asyncRunnable = new ArrayList<>();
                                                             BranchChunkLight chunkLight = branchMinecraft.fromLight(world);
-                                                            BranchNBT chunkNBT = branchMinecraft.fromChunk(world, chunk).toNBT(chunkLight, asyncRunnable);
+                                                            BranchNBT chunkNBT = chunk.toNBT(chunkLight, asyncRunnable);
                                                             asyncRunnable.forEach(Runnable::run);
                                                             sendChunk(world, configWorld, worldNetworkTraffic, view, chunkX, chunkZ, chunkNBT, chunkLight, syncKey, worldCumulativeReport, threadCumulativeReport);
                                                             break handlePlayer;

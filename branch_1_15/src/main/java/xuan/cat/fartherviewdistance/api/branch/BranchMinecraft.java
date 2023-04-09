@@ -7,10 +7,9 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 
 public interface BranchMinecraft {
-
     BranchNBT getChunkNBTFromDisk(World world, int chunkX, int chunkZ) throws IOException;
 
-    Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ);
+    BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ);
 
     BranchChunk fromChunk(World world, int chunkX, int chunkZ, BranchNBT nbt, boolean integralHeightmap);
 

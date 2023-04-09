@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import xuan.cat.fartherviewdistance.api.branch.BranchChunk;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunkLight;
 import xuan.cat.fartherviewdistance.api.branch.BranchPacket;
 
@@ -35,11 +36,11 @@ public final class Branch_19_Packet implements BranchPacket {
         sendPacket(player, new ClientboundForgetLevelChunkPacket(chunkX, chunkZ));
     }
 
-    public Consumer<Player> sendChunkAndLight(org.bukkit.Chunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
+    public Consumer<Player> sendChunkAndLight(BranchChunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
         FriendlyByteBuf serializer = new FriendlyByteBuf(Unpooled.buffer().writerIndex(0));
         serializer.writeInt(chunk.getX());
         serializer.writeInt(chunk.getZ());
-        this.handleChunk.write(serializer, chunk, needTile);
+        this.handleChunk.write(serializer, ((Branch_19_Chunk) chunk).getLevelChunk(), needTile);
         this.handleLightUpdate.write(serializer, (Branch_19_ChunkLight) light, true);
         consumeTraffic.accept(serializer.readableBytes());
         ClientboundLevelChunkWithLightPacket packet = new ClientboundLevelChunkWithLightPacket(serializer);

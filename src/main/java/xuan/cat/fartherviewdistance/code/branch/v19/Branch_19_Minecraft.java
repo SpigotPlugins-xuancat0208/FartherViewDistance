@@ -17,7 +17,7 @@ public final class Branch_19_Minecraft implements BranchMinecraft {
     }
 
     @Override
-    public Chunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
+    public BranchChunk getChunkFromMemoryCache(World world, int chunkX, int chunkZ) {
         throw new UnsupportedOperationException();
     }
 

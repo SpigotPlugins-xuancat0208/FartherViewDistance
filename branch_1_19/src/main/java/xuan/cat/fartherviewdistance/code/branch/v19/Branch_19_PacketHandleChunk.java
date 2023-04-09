@@ -11,18 +11,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.Heightmap;
-import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_19_R3.CraftChunk;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Branch_19_PacketHandleChunk {
     public Branch_19_PacketHandleChunk() {
-    }
-
-    public void write(FriendlyByteBuf serializer, Chunk chunk, boolean needTile) {
-        this.write(serializer, ((CraftChunk) chunk).getHandle(), needTile);
     }
 
     public void write(FriendlyByteBuf serializer, LevelChunk chunk, boolean needTile) {

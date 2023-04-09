@@ -17,14 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="branch_1_13" target="1.8" />
-      <module name="branch_1_14" target="1.8" />
-      <module name="branch_1_15" target="1.8" />
-      <module name="branch_1_16" target="1.8" />
-      <module name="branch_1_17" target="1.8" />
-      <module name="branch_1_18" target="9" />
-      <module name="branch_1_19" target="9" />
       <module name="branch_1_19_b" target="9" />
-      <module name="FartherViewDistance" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
