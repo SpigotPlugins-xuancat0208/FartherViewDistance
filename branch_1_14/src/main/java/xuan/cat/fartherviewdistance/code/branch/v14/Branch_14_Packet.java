@@ -4,6 +4,7 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.server.v1_14_R1.*;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import xuan.cat.fartherviewdistance.api.branch.BranchChunk;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunkLight;
 import xuan.cat.fartherviewdistance.api.branch.BranchPacket;
 
@@ -29,8 +30,8 @@ public final class Branch_14_Packet implements BranchPacket {
         sendPacket(player, new PacketPlayOutUnloadChunk(chunkX, chunkZ));
     }
 
-    public Consumer<Player> sendChunkAndLight(org.bukkit.Chunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
-        PacketPlayOutMapChunk packetChunk = handleChunk.createMapChunkPacket(chunk, 65535, needTile);
+    public Consumer<Player> sendChunkAndLight(BranchChunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
+        PacketPlayOutMapChunk packetChunk = handleChunk.createMapChunkPacket(chunk.getChunk(), 65535, needTile);
         PacketPlayOutLightUpdate packetLight = handleLightUpdate.createLightUpdatePacket(chunk.getX(), chunk.getZ(), ((Branch_14_ChunkLight) light));
         try {
             // 適用於 paper

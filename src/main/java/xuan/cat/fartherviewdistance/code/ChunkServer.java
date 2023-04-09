@@ -491,7 +491,7 @@ public final class ChunkServer {
         }
 
         AtomicInteger consumeTraffic = new AtomicInteger(0);
-        Consumer<Player> chunkAndLightPacket = branchPacket.sendChunkAndLight(chunk.getChunk(), chunkLight, configWorld.sendTitleData, consumeTraffic::addAndGet);
+        Consumer<Player> chunkAndLightPacket = branchPacket.sendChunkAndLight(chunk, chunkLight, configWorld.sendTitleData, consumeTraffic::addAndGet);
 
         // 需要測量速度 (最短每 1 秒一次, 30 秒超時)
         synchronized (view.networkSpeed) {

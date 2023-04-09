@@ -1,7 +1,7 @@
 package xuan.cat.fartherviewdistance.code.branch.v14;
 
-import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
+import xuan.cat.fartherviewdistance.api.branch.BranchChunk;
 import xuan.cat.fartherviewdistance.api.branch.BranchChunkLight;
 import xuan.cat.fartherviewdistance.api.branch.BranchPacket;
 
@@ -19,7 +19,7 @@ public final class Branch_14_Packet implements BranchPacket {
     }
 
     @Override
-    public Consumer<Player> sendChunkAndLight(Chunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
+    public Consumer<Player> sendChunkAndLight(BranchChunk chunk, BranchChunkLight light, boolean needTile, Consumer<Integer> consumeTraffic) {
         throw new UnsupportedOperationException();
     }
 
