@@ -4,11 +4,14 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class ViewMap {
     public final ViewShape viewShape;
     public int extendDistance = 1;
     public int serverDistance = 1;
+    /** 已完成距離 */
+    public final AtomicInteger completedDistance = new AtomicInteger(-1);
     protected int centerX = 0;
     protected int centerZ = 0;
 

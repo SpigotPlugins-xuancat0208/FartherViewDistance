@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 可以無限增加的視圖計算器
@@ -41,8 +40,7 @@ public final class LongXInfinitelyViewMap extends ViewMap {
     private final int maxRadius;
     /** 最大直徑塊數 */
     private final int maxDiameter;
-    /** 已完成距離 */
-    private final AtomicInteger completedDistance = new AtomicInteger(-1);
+
 
     public LongXInfinitelyViewMap(ViewShape viewShape, int row) {
         super(viewShape);

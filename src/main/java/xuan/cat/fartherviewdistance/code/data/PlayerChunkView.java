@@ -92,12 +92,17 @@ public final class PlayerChunkView {
         }
         if (forcibly || lastDistance != newDistance) {
 //            mapView.markOutsideWait(newDistance);
+            int gapDistance = lastDistance - newDistance;
             lastDistance = newDistance;
             mapView.extendDistance = newDistance;
+            if (gapDistance > 0) {
+                mapView.completedDistance.addAndGet(-gapDistance);
+            }
             PlayerSendViewDistanceEvent event = new PlayerSendViewDistanceEvent(viewAPI, newDistance);
             Bukkit.getPluginManager().callEvent(event);
-            if (!event.isCancelled())
+            if (!event.isCancelled()) {
                 branchPacket.sendViewDistance(player, event.getDistance());
+            }
         }
     }
 

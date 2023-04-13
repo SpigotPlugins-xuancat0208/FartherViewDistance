@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 表示區塊視野
@@ -50,8 +49,7 @@ public final class LongX31ViewMap extends ViewMap {
     private static final int LENGTH = 63;
     /** 視圖計算 */
     private final long[] chunkMap = new long[LENGTH];
-    /** 已完成距離 */
-    private final AtomicInteger completedDistance = new AtomicInteger(-1);
+
 
     public LongX31ViewMap(ViewShape viewShape) {
         super(viewShape);
