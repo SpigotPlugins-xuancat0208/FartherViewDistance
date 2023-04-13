@@ -89,10 +89,8 @@ public final class LongXInfinitelyViewMap extends ViewMap {
                     chunkX = (centerX - pointerX) + maxRadius;
                     chunkZ = (centerZ - pointerZ) + maxRadius;
                     // 是否已經不再範圍內
-                    if (markWaitSafe(pointerX, pointerZ)) {
-                        if (!viewShape.isInside(centerX, centerZ, chunkX, chunkZ, hitDistance) && !viewShape.isInside(moveX, moveZ, chunkX, chunkZ, hitDistance)) {
-                            removeKeys.add(getPositionKey(chunkX, chunkZ));
-                        }
+                    if (isSendSafe(pointerX, pointerZ) && !viewShape.isInside(centerX, centerZ, chunkX, chunkZ, hitDistance) && !viewShape.isInside(moveX, moveZ, chunkX, chunkZ, hitDistance) && markWaitSafe(pointerX, pointerZ)) {
+                        removeKeys.add(getPositionKey(chunkX, chunkZ));
                     }
                 }
             }
