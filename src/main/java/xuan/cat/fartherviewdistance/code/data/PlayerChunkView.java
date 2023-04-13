@@ -91,7 +91,7 @@ public final class PlayerChunkView {
             }
         }
         if (forcibly || lastDistance != newDistance) {
-//            mapView.markOutsideWait(newDistance);
+            mapView.markOutsideWait(newDistance);
             int gapDistance = lastDistance - newDistance;
             lastDistance = newDistance;
             mapView.extendDistance = newDistance;
